@@ -132,3 +132,5 @@ dmypy.json
 .metadata_never_index
 .vscode/
 boot_out.txt
+*.zip
+fp-info-cache
