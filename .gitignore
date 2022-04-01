@@ -134,3 +134,4 @@ dmypy.json
 boot_out.txt
 *.zip
 fp-info-cache
+KiCad/macropad_gerber/
