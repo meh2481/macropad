@@ -6,6 +6,7 @@ from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keycode import Keycode
 from digitalio import DigitalInOut, Direction, Pull
 from adafruit_debouncer import Debouncer
+# import busio
 
 # Setup PWM for LEDs
 leds_r = [
@@ -20,28 +21,28 @@ leds_r = [
 leds_g = [
     pwmio.PWMOut(board.GP2, variable_frequency=False, duty_cycle=65535),
     pwmio.PWMOut(board.GP6, variable_frequency=False, duty_cycle=65535),
-    None, #pwmio.PWMOut(board.GP10, variable_frequency=False, duty_cycle=65535),
+    pwmio.PWMOut(board.GP8, variable_frequency=False, duty_cycle=65535),
     pwmio.PWMOut(board.GP14, variable_frequency=False, duty_cycle=65535),
     pwmio.PWMOut(board.GP20, variable_frequency=False, duty_cycle=65535),
     pwmio.PWMOut(board.GP27, variable_frequency=False, duty_cycle=65535)
 ]
 
 leds_b = [
-    None, #pwmio.PWMOut(board.GP3, variable_frequency=False, duty_cycle=65535),
+    pwmio.PWMOut(board.GP0, variable_frequency=False, duty_cycle=65535),
     pwmio.PWMOut(board.GP7, variable_frequency=False, duty_cycle=65535),
-    None, #pwmio.PWMOut(board.GP11, variable_frequency=False, duty_cycle=65535),
+    pwmio.PWMOut(board.GP12, variable_frequency=False, duty_cycle=65535),
     pwmio.PWMOut(board.GP15, variable_frequency=False, duty_cycle=65535),
-    None, #pwmio.PWMOut(board.GP21, variable_frequency=False, duty_cycle=65535),
-    pwmio.PWMOut(board.GP28, variable_frequency=False, duty_cycle=65535)
+    None, #pwmio.PWMOut(board.GP29, variable_frequency=False, duty_cycle=65535),
+    None, #pwmio.PWMOut(board.GP28, variable_frequency=False, duty_cycle=65535)
 ]
 
 buttons = [
-    DigitalInOut(board.GP0),
+    DigitalInOut(board.GP3),
     DigitalInOut(board.GP4),
-    DigitalInOut(board.GP8),
-    DigitalInOut(board.GP12),
-    DigitalInOut(board.GP18),
-    DigitalInOut(board.GP22)
+    DigitalInOut(board.GP10),
+    DigitalInOut(board.GP11),
+    DigitalInOut(board.GP22),
+    DigitalInOut(board.GP21)
 ]
 
 for button in buttons: 
@@ -53,6 +54,8 @@ debounced_buttons = [Debouncer(button) for button in buttons]
 kbd = Keyboard(usb_hid.devices)
 
 button_rose_times = [0.0] * len(buttons)
+
+# i2c = busio.I2C(board.GP17, board.GP16)
 
 keycodes = [
     Keycode.F13,
@@ -84,6 +87,8 @@ while True:
     for i in range(len(buttons)):
         # For now just fade out blue
         update_led(leds_r[i], debounced_buttons[i], button_rose_times[i])
+        update_led(leds_g[i], debounced_buttons[i], button_rose_times[i])
+        update_led(leds_b[i], debounced_buttons[i], button_rose_times[i])
 
         # Check for button presses
         if debounced_buttons[i].fell:
