@@ -9,18 +9,18 @@ from adafruit_debouncer import Debouncer
 
 # Setup PWM for LEDs
 leds_r = [
-    pwmio.PWMOut(board.GP1, frequency=5000, duty_cycle=65535),
-    pwmio.PWMOut(board.GP5, frequency=5000, duty_cycle=65535),
-    pwmio.PWMOut(board.GP9, frequency=5000, duty_cycle=65535),
-    pwmio.PWMOut(board.GP13, frequency=5000, duty_cycle=65535),
-    pwmio.PWMOut(board.GP19, frequency=5000, duty_cycle=65535),
-    pwmio.PWMOut(board.GP26, frequency=5000, duty_cycle=65535)
+    pwmio.PWMOut(board.GP1), #frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP5), #, frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP9), #, frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP13), #, frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP19), #, frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP26), #, frequency=5000, duty_cycle=65535)
 ]
 
 leds_g = [
-    pwmio.PWMOut(board.GP2, frequency=5000, duty_cycle=65535),
-    pwmio.PWMOut(board.GP6, frequency=5000, duty_cycle=65535),
-    None, # pwmio.PWMOut(board.GP10, frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP2), #, frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP6), #, frequency=5000, duty_cycle=65535),
+    pwmio.PWMOut(board.GP10), #, frequency=5000, duty_cycle=65535),
     pwmio.PWMOut(board.GP14, frequency=5000, duty_cycle=65535),
     pwmio.PWMOut(board.GP20, frequency=5000, duty_cycle=65535),
     pwmio.PWMOut(board.GP27, frequency=5000, duty_cycle=65535)
